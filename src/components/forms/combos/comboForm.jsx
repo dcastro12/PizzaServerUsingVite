@@ -1,18 +1,16 @@
-// IngredientForm.jsx
+// ComboForm.jsx
 import React, { useState } from 'react';
 import Boton from '../../buttons/login/loginButton';
-import './ingredientStyle.css'
+import './comboStyle.css'
 
-function IngredientForm() {
+function ComboForm() {
     const [sku, setSku] = useState('');
     const [name, setName] = useState('');
-    const [quantity, setQuantity] = useState(0);
-    const [bestbyDate, setBestbyDate] = useState('');
-    const [boughtDate, setBoughtDate] = useState('');
-    const [price, setPrice] = useState(0);
+    const [combo, setCombo] = useState(''); 
+    const [price, setPrice] = useState('');
 
     return (
-        <form className="formulario-producto">
+        <form className="formulario-combo">
             <div>
                 <label htmlFor="sku">SKU:</label>
                 <input
@@ -32,30 +30,12 @@ function IngredientForm() {
                 />
             </div>
             <div>
-                <label htmlFor="quantity">Cantidad:</label>
+                <label htmlFor="combo">Combo (item1, item2, item3):</label>
                 <input
-                    id="quantity"
-                    type="number"
-                    value={quantity}
-                    onChange={(e) => setQuantity(e.target.value)}
-                />
-            </div>
-            <div>
-                <label htmlFor="bestbyDate">Fecha de Vencimiento:</label>
-                <input
-                    id="bestbyDate"
-                    type="date"
-                    value={bestbyDate}
-                    onChange={(e) => setBestbyDate(e.target.value)}
-                />
-            </div>
-            <div>
-                <label htmlFor="boughtDate">Fecha de Compra:</label>
-                <input
-                    id="boughtDate"
-                    type="date"
-                    value={boughtDate}
-                    onChange={(e) => setBoughtDate(e.target.value)}
+                    id="combo"
+                    type="text"
+                    value={combo}
+                    onChange={(e) => setCombo(e.target.value)}
                 />
             </div>
             <div>
@@ -77,4 +57,4 @@ function IngredientForm() {
     );
 }
 
-export default IngredientForm;
+export default ComboForm;

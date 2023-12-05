@@ -5,6 +5,10 @@
     padding: 20px;
 }
 
+.background{
+    background-color: aliceblue;
+}
+
 h1{
     margin-left: 50px;
     text-align: center;
