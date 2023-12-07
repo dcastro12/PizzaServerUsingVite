@@ -67,3 +67,18 @@
 .boton-limpiar:hover{
     background-color: #33b5e5;
 }
+
+/* Estilos para tabletas */
+@media (max-width: 768px) {
+    .formulario-ingredientes {
+      padding: 15px;
+    }
+  }
+  
+  /* Estilos para móviles */
+  @media (max-width: 480px) {
+    .formulario-ingredientes {
+      padding: 10px;
+    }
+  }
+  

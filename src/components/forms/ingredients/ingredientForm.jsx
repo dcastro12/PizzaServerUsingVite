@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import Boton from '../../buttons/login/loginButton';
 import './ingredientStyle.css'
+import { addIngredient, deleteIngredient, updateIngredient } from '../../../middleware/ingridients';
 
 function IngredientForm() {
     const [sku, setSku] = useState('');
@@ -10,6 +11,55 @@ function IngredientForm() {
     const [bestbyDate, setBestbyDate] = useState('');
     const [boughtDate, setBoughtDate] = useState('');
     const [price, setPrice] = useState(0);
+    
+    const handleAdd = async (event) => {
+        event.preventDefault();
+        try{
+            const newIngridient = await addIngredient({sku, name, quantity, bestbyDate, boughtDate, price});
+            console.log('Ingrediente agregado: ', newIngridient);
+        }
+        catch(error)
+        {
+            console.error('Error al agregar ingrediente: ', error);
+        }
+    };
+
+    const handleDelete = async (event) => {
+        event.preventDefault();
+        try{
+            if(sku) {
+                await deleteIngredient(sku);
+                alert(`Ingrediente con SKU ${sku} eliminado`)
+                console.log(`Ingrediente con SKU ${sku} eliminado`);
+            }
+            else {
+                alert('SKU es requerido para eleminar');
+            }
+        }
+        catch (error){
+            alert('Error al eliminar ingrediente.')
+            console.error('Error al eliminar ingrediente: ', error);
+        }
+    };
+
+    const handleUpdate = async (event) => {
+        event.preventDefault();
+        try{
+            if (sku)
+            {
+                const updatedIngredient = await updateIngredient(sku, {name, quantity, price});
+                alert(`Ingrediente con SKU ${sku} actualizado`)
+                console.log(`Ingrediente con SKU ${sku} actualizado`);
+            }
+            else {
+                alert('SKU es requerido para actualizar');
+            }
+        }
+        catch (error) {
+            alert('Error al actualizar ingrediente.')
+            console.error('Error al actualizar ingrediente: ', error);
+        };
+    };
 
     return (
         <form className="formulario-producto">
@@ -67,11 +117,12 @@ function IngredientForm() {
                     onChange={(e) => setPrice(e.target.value)}
                 />
             </div>
+            
 
             {/* Botones */}
-            <Boton className="boton-agregar" texto="Agregar" onClick={() => { /* Lógica del botón agregar */ }} />
-            <Boton className="boton-editar" texto="Editar" onClick={() => { /* Lógica del botón editar */ }} />
-            <Boton className="boton-eliminar" texto="Eliminar" onClick={() => { /* Lógica del botón eliminar */ }} />
+            <Boton className="boton-agregar" texto="Agregar" onClick={handleAdd}/>
+            <Boton className="boton-editar" texto="Editar" onClick={handleUpdate} />
+            <Boton className="boton-eliminar" texto="Eliminar" onClick={handleDelete} />
             <Boton className="boton-limpiar" texto="Limpiar" onClick={() => { /* Lógica del botón limpiar */ }} />
         </form>
     );

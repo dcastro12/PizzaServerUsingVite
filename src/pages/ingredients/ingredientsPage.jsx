@@ -1,5 +1,6 @@
 import React from "react";
 import IngredientForm from "../../components/forms/ingredients/ingredientForm";
+import './IngredientsPage.css'
 
 function IngredientPage() {
     return(
